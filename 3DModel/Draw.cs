@@ -29,6 +29,7 @@ namespace _3DModel
             {
                 foreach (Face face in baseObj.faces)
                 {
+                    if (!face.IsFront) continue;
                     foreach (Line line in face.Lines)
                     {
                         PointD pFace1 = line.Start;
@@ -52,31 +53,6 @@ namespace _3DModel
                                        (pFace1Next.Y + bmp.Height/2 -
                                         Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1Next.Z) -
                                         Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z)));
-                        //if (k!=1)
-                        //{
-                        //    PointD pFace2 = baseObj.faces[k][i];
-                        //    PointD pNextFace2 = baseObj.faces[k + 1][i];
-                        //    double cos = Math.Cos(Form1.zAngleRad);
-                        //    double sin = Math.Sin(Form1.zAngleRad);
-                        //    g.DrawLine(pen,
-                        //               new Point(
-                        //                   (int)
-                        //                   (pFace2.X + bmp.Width/2 + cos*(baseObj.BasePoint.Z - pFace2.Z) +
-                        //                    cos * baseObj.BasePoint.Z),
-                        //                   (int)
-                        //                   (pFace2.Y + bmp.Height/2 - sin*(baseObj.BasePoint.Z - pFace2.Z) -
-                        //                    sin * baseObj.BasePoint.Z)),
-                        //               new Point(
-                        //                   (int)
-                        //                   (pNextFace2.X + bmp.Width / 2 + cos * (baseObj.BasePoint.Z - pNextFace2.Z) +
-                        //                    cos * baseObj.BasePoint.Z),
-                        //                   (int)
-                        //                   (pNextFace2.Y + bmp.Height / 2 - sin * (baseObj.BasePoint.Z - pNextFace2.Z) -
-                        //                    sin * baseObj.BasePoint.Z)));
-                        //}
-
-                        //new Point((int)(p.X+bmp.Width/2), (int)(p.Y+bmp.Height/2)),
-                        //new Point((int)(pNext.X+bmp.Width/2), (int)(pNext.Y+bmp.Height/2)));
                     }
                 }
             }

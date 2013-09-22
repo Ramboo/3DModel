@@ -336,8 +336,10 @@ namespace _3DModel
                 switch (byAxis)
                 {
                     case 0:
+                        double startA = face.xAngle;
                         face.xAngle += angle;
                         face.xAngle = AngleFix(face.xAngle);
+                        FrontFix(face, startA);
                         break;
                     case 1:
                         face.yAngle += angle;
@@ -364,6 +366,11 @@ namespace _3DModel
                 angle += 360;
             }
             return angle;
+        }
+
+        private void FrontFix(Face face, double startAngle)
+        {
+            //TODO: sdf sd
         }
 
         public void Zoom(double dx, double dy, double dz, PointD point)
