@@ -29,7 +29,11 @@ namespace _3DModel
 
             label4.Text = (model.BasePoint.X).ToString();
             label3.Text = (-model.BasePoint.Y).ToString();
-            label8.Text = (model.BasePoint.Z).ToString();
+            label8.Text = (-model.BasePoint.Z).ToString();
+
+            label11.Text = (model.faces[0].xAngle).ToString();
+            label12.Text = (model.faces[0].yAngle).ToString();
+            label13.Text = (model.faces[0].zAngle).ToString();
 
             pictureBox1.Image = bmp;
         }
@@ -52,7 +56,7 @@ namespace _3DModel
 
         private void btnMove_Click(object sender, EventArgs e)
         {
-            model.Move((int) numUDdx.Value, (int) - numUDdy.Value, (int) numUDdz.Value);
+            model.Move((int) numUDdx.Value, (int) - numUDdy.Value, (int) - numUDdz.Value);
         }
 
         private void btnRotate_Click(object sender, EventArgs e)
