@@ -31,9 +31,9 @@ namespace _3DModel
             label3.Text = (-model.BasePoint.Y).ToString();
             label8.Text = (-model.BasePoint.Z).ToString();
 
-            label11.Text = (model.faces[0].xAngleCurrent).ToString();
-            label12.Text = (model.faces[0].yAngleCurrent).ToString();
-            label13.Text = (model.faces[0].zAngleCurrent).ToString();
+            label11.Text = (model.faces[0].yAngleCurrent).ToString();
+            label12.Text = (model.faces[1].yAngleCurrent).ToString();
+            //label13.Text = (model.faces[0].zAngleCurrent).ToString();
 
             pictureBox1.Image = bmp;
         }

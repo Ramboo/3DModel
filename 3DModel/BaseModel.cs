@@ -101,9 +101,9 @@ namespace _3DModel
                                     new Line(new PointD(x + A+(B-2*A), y + (D - A)/2, z-C), new PointD(x + A+(B-2*A), y + (D - A)/2, z)),
                                     new Line(new PointD(x + A+(B-2*A), y + (D - A)/2, z), new PointD(x + A, y + (D - A)/2, z)),
                                 },
-                            xAngleCurrent = 0,
+                            xAngleCurrent = 90,
                             yAngleCurrent = 90,
-                            zAngleCurrent = 90
+                            zAngleCurrent = 0
                         },
                     new Face
                         {
@@ -157,9 +157,9 @@ namespace _3DModel
                                     new Line(new PointD(x + B, y + D, z - C), new PointD(x + B, y + D, z)),
                                     new Line(new PointD(x + B, y + D, z), new PointD(x + B - A, y + D, z)),
                                 },
-                            xAngleCurrent = 0,
+                            xAngleCurrent = 90,
                             yAngleCurrent = 90,
-                            zAngleCurrent = 90
+                            zAngleCurrent = 0
                         },
                     new Face
                         {
@@ -185,9 +185,9 @@ namespace _3DModel
                                     new Line(new PointD(x + A+(B-2*A), y + (D - A)/2 + A, z-C), new PointD(x + A+(B-2*A), y + (D - A)/2 + A, z)),
                                     new Line(new PointD(x + A+(B-2*A), y + (D - A)/2 + A, z), new PointD(x + A, y + (D - A)/2 + A, z)),
                                 },
-                            xAngleCurrent = 0,
+                            xAngleCurrent = 90,
                             yAngleCurrent = 90,
-                            zAngleCurrent = 90
+                            zAngleCurrent = 0
                         },
                     new Face
                         {
@@ -302,9 +302,9 @@ namespace _3DModel
                 case 1:
                     _rotateArray = new[]
                         {
-                            new[] {Math.Cos(angleRad), 0, Math.Sin(angleRad), 0},
+                            new[] {Math.Cos(angleRad), 0, -Math.Sin(angleRad), 0},
                             new double[] {0, 1, 0, 0},
-                            new[] {-Math.Sin(angleRad), 0, Math.Cos(angleRad), 0},
+                            new[] {Math.Sin(angleRad), 0, Math.Cos(angleRad), 0},
                             new double[] {0, 0, 0, 1}
                         };
                     break;
@@ -345,27 +345,46 @@ namespace _3DModel
                     case 0:
                         face.xAngleCurrent += angle;
                         face.xAngleCurrent = AngleFix(face.xAngleCurrent);
-                        //TODO: Решить проблему с углами
-                        face.IsFrontCurrent = Math.Abs(face.xAngleCurrent - face.xAngleStart) >= 45
-                                                  ? !face.IsFrontStart
-                                                  : face.IsFrontStart;
+                        if (face.yAngleStart != 0)
+                        {
+                            face.IsFrontCurrent = AngleFix(-face.xAngleStart + face.xAngleCurrent) >= -125 + face.xAngleStart &&
+                                                  AngleFix(-face.xAngleStart + face.xAngleCurrent) <= 55 + face.xAngleStart
+                                                      ? face.IsFrontStart
+                                                      : !face.IsFrontStart;
+                        }
                         break;
                     case 1:
                         face.yAngleCurrent += angle;
                         face.yAngleCurrent = AngleFix(face.yAngleCurrent);
-                        face.IsFrontCurrent = Math.Abs(face.yAngleCurrent - face.yAngleStart) >= 45
-                                                  ? !face.IsFrontStart
-                                                  : face.IsFrontStart;
+                        if (face.zAngleStart != 0)
+                        {
+                            face.IsFrontCurrent = AngleFix(-face.yAngleStart + face.yAngleCurrent) >= -145 + face.yAngleStart &&
+                                                  AngleFix(-face.yAngleStart + face.yAngleCurrent) <= 35 + face.yAngleStart
+                                                      ? face.IsFrontStart
+                                                      : !face.IsFrontStart;
+                        }
                         break;
                     case 2:
                         face.zAngleCurrent += angle;
                         face.zAngleCurrent = AngleFix(face.zAngleCurrent);
-                        face.IsFrontCurrent = Math.Abs(face.zAngleCurrent - face.zAngleStart) >= 45
-                                                  ? !face.IsFrontStart
-                                                  : face.IsFrontStart;
+                        if (face.xAngleStart != 0)
+                        {
+                            face.IsFrontCurrent = AngleFix(-face.zAngleStart + face.zAngleCurrent) >= -135 + face.zAngleStart &&
+                                                  AngleFix(-face.zAngleStart + face.zAngleCurrent) <= 45 + face.zAngleStart
+                                                      ? face.IsFrontStart
+                                                      : !face.IsFrontStart;
+                        }
                         break;
                 }
             }
+            //faces[0].IsFrontCurrent = (faces[0].xAngleStart + faces[0].xAngleCurrent) >= -125 &&
+            //                          (faces[0].xAngleStart + faces[0].xAngleCurrent) <= 55
+            //                              ? faces[0].IsFrontStart
+            //                              : !faces[0].IsFrontStart;
+            //faces[1].IsFrontCurrent = (AngleFix(-faces[1].xAngleStart + faces[1].xAngleCurrent)) >= -125 + faces[1].xAngleStart &&
+            //                          (AngleFix(-faces[1].xAngleStart + faces[1].xAngleCurrent)) <= 55 + faces[1].xAngleStart
+            //                              ? faces[1].IsFrontStart
+            //                              : !faces[1].IsFrontStart;
             BasePoint = faces[0].Lines[0].Start;
         }
 
@@ -374,11 +393,11 @@ namespace _3DModel
             if (angle != 0 && angle % 360 == 0) angle = 0;
             while (angle > 180)
             {
-                angle -= 180;
+                angle -= 360;
             }
             while (angle < -180)
             {
-                angle += 180;
+                angle += 360;
             }
             return angle;
         }
