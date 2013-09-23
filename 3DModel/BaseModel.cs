@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace _3DModel
@@ -34,30 +35,43 @@ namespace _3DModel
 
             faces = new List<Face>
                 {
-                    new Face //H front
+                    new Face // H left part
                         {
                             IsFrontStart = true,
                             Lines = new List<Line>
                                 {
                                     new Line(new PointD(x, y, z), new PointD(x + A, y, z)),
-                                    new Line(new PointD(x + A, y, z), new PointD(x + A, y + ((D - A)/2), z)),
-                                    new Line(new PointD(x + A, y + ((D - A)/2), z),
-                                             new PointD(x + A + (B - 2*A), y + ((D - A)/2), z)),
-                                    new Line(new PointD(x + A + (B - 2*A), y + ((D - A)/2), z),
-                                             new PointD(x + A + (B - 2*A), y, z)),
-                                    new Line(new PointD(x + A + (B - 2*A), y, z),
-                                             new PointD(x + A + (B - 2*A) + A, y, z)),
-                                    new Line(new PointD(x + A + (B - 2*A) + A, y, z),
-                                             new PointD(x + A + (B - 2*A) + A, y + D, z)),
-                                    new Line(new PointD(x + A + (B - 2*A) + A, y + D, z),
-                                             new PointD(x + A + (B - 2*A), y + D, z)),
-                                    new Line(new PointD(x + A + (B - 2*A), y + D, z),
-                                             new PointD(x + A + (B - 2*A), y + D - ((D - A)/2), z)),
-                                    new Line(new PointD(x + A + (B - 2*A), y + D - ((D - A)/2), z),
-                                             new PointD(x + A, y + D - ((D - A)/2), z)),
-                                    new Line(new PointD(x + A, y + D - ((D - A)/2), z), new PointD(x + A, y + D, z)),
+                                    new Line(new PointD(x + A, y, z), new PointD(x + A, y + D, z)),
                                     new Line(new PointD(x + A, y + D, z), new PointD(x, y + D, z)),
-                                    new Line(new PointD(x, y + D, z), new PointD(x, y, z))
+                                    new Line(new PointD(x, y + D, z), new PointD(x, y, z)),
+                                },
+                            xAngleCurrent = 0,
+                            yAngleCurrent = 90,
+                            zAngleCurrent = 90
+                        },
+                    new Face // H center part
+                        {
+                            IsFrontStart = true,
+                            Lines = new List<Line>
+                                {
+                                    new Line(new PointD(x + A, y + ((D - A)/2), z), new PointD(x + A + (B - 2*A), y + ((D - A)/2), z)),
+                                    new Line(new PointD(x + A + (B - 2*A), y + ((D - A)/2), z), new PointD(x + A + (B - 2*A), y + ((D - A)/2) + A, z)),
+                                    new Line(new PointD(x + A + (B - 2*A), y + ((D - A)/2) + A, z), new PointD(x + A, y + ((D - A)/2) + A, z)),
+                                    new Line(new PointD(x + A, y + ((D - A)/2) + A, z), new PointD(x + A, y + ((D - A)/2), z)),
+                                },
+                            xAngleCurrent = 0,
+                            yAngleCurrent = 90,
+                            zAngleCurrent = 90
+                        },
+                    new Face // H right part
+                        {
+                            IsFrontStart = true,
+                            Lines = new List<Line>
+                                {
+                                    new Line(new PointD(x + B - A, y, z), new PointD(x + B, y, z)),
+                                    new Line(new PointD(x + B, y, z), new PointD(x + B, y + D, z)),
+                                    new Line(new PointD(x + B, y + D, z), new PointD(x + B - A, y + D, z)),
+                                    new Line(new PointD(x + B - A, y + D, z), new PointD(x + B - A, y, z)),
                                 },
                             xAngleCurrent = 0,
                             yAngleCurrent = 90,
@@ -231,35 +245,48 @@ namespace _3DModel
                             yAngleCurrent = 0,
                             zAngleCurrent = 90
                         },
-                    new Face //H back
+                    new Face // H left part
                         {
                             IsFrontStart = false,
                             Lines = new List<Line>
                                 {
                                     new Line(new PointD(x, y, z - C), new PointD(x + A, y, z - C)),
-                                    new Line(new PointD(x + A, y, z - C), new PointD(x + A, y + ((D - A)/2), z - C)),
-                                    new Line(new PointD(x + A, y + ((D - A)/2), z - C),
-                                             new PointD(x + A + (B - 2*A), y + ((D - A)/2), z - C)),
-                                    new Line(new PointD(x + A + (B - 2*A), y + ((D - A)/2), z - C),
-                                             new PointD(x + A + (B - 2*A), y, z - C)),
-                                    new Line(new PointD(x + A + (B - 2*A), y, z - C),
-                                             new PointD(x + A + (B - 2*A) + A, y, z - C)),
-                                    new Line(new PointD(x + A + (B - 2*A) + A, y, z - C),
-                                             new PointD(x + A + (B - 2*A) + A, y + D, z - C)),
-                                    new Line(new PointD(x + A + (B - 2*A) + A, y + D, z - C),
-                                             new PointD(x + A + (B - 2*A), y + D, z - C)),
-                                    new Line(new PointD(x + A + (B - 2*A), y + D, z - C),
-                                             new PointD(x + A + (B - 2*A), y + D - ((D - A)/2), z - C)),
-                                    new Line(new PointD(x + A + (B - 2*A), y + D - ((D - A)/2), z - C),
-                                             new PointD(x + A, y + D - ((D - A)/2), z - C)),
-                                    new Line(new PointD(x + A, y + D - ((D - A)/2), z - C), new PointD(x + A, y + D, z - C)),
+                                    new Line(new PointD(x + A, y, z - C), new PointD(x + A, y + D, z - C)),
                                     new Line(new PointD(x + A, y + D, z - C), new PointD(x, y + D, z - C)),
-                                    new Line(new PointD(x, y + D, z - C), new PointD(x, y, z - C))
+                                    new Line(new PointD(x, y + D, z - C), new PointD(x, y, z - C)),
                                 },
                             xAngleCurrent = 0,
                             yAngleCurrent = 90,
                             zAngleCurrent = 90
-                        }
+                        },
+                    new Face // H center part
+                        {
+                            IsFrontStart = false,
+                            Lines = new List<Line>
+                                {
+                                    new Line(new PointD(x + A, y + ((D - A)/2), z - C), new PointD(x + A + (B - 2*A), y + ((D - A)/2), z - C)),
+                                    new Line(new PointD(x + A + (B - 2*A), y + ((D - A)/2), z - C), new PointD(x + A + (B - 2*A), y + ((D - A)/2) + A, z - C)),
+                                    new Line(new PointD(x + A + (B - 2*A), y + ((D - A)/2) + A, z - C), new PointD(x + A, y + ((D - A)/2) + A, z - C)),
+                                    new Line(new PointD(x + A, y + ((D - A)/2) + A, z - C), new PointD(x + A, y + ((D - A)/2), z - C)),
+                                },
+                            xAngleCurrent = 0,
+                            yAngleCurrent = 90,
+                            zAngleCurrent = 90
+                        },
+                    new Face // H right part
+                        {
+                            IsFrontStart = false,
+                            Lines = new List<Line>
+                                {
+                                    new Line(new PointD(x + B - A, y, z - C), new PointD(x + B, y, z - C)),
+                                    new Line(new PointD(x + B, y, z - C), new PointD(x + B, y + D, z - C)),
+                                    new Line(new PointD(x + B, y + D, z - C), new PointD(x + B - A, y + D, z - C)),
+                                    new Line(new PointD(x + B - A, y + D, z - C), new PointD(x + B - A, y, z - C)),
+                                },
+                            xAngleCurrent = 0,
+                            yAngleCurrent = 90,
+                            zAngleCurrent = 90
+                        },
                 };
             foreach (Face face in faces)
             {
@@ -377,14 +404,6 @@ namespace _3DModel
                         break;
                 }
             }
-            //faces[0].IsFrontCurrent = (faces[0].xAngleStart + faces[0].xAngleCurrent) >= -125 &&
-            //                          (faces[0].xAngleStart + faces[0].xAngleCurrent) <= 55
-            //                              ? faces[0].IsFrontStart
-            //                              : !faces[0].IsFrontStart;
-            //faces[1].IsFrontCurrent = (AngleFix(-faces[1].xAngleStart + faces[1].xAngleCurrent)) >= -125 + faces[1].xAngleStart &&
-            //                          (AngleFix(-faces[1].xAngleStart + faces[1].xAngleCurrent)) <= 55 + faces[1].xAngleStart
-            //                              ? faces[1].IsFrontStart
-            //                              : !faces[1].IsFrontStart;
             BasePoint = faces[0].Lines[0].Start;
         }
 

@@ -32,27 +32,25 @@ namespace _3DModel
                     if (!face.IsFrontCurrent) continue;
                     foreach (Line line in face.Lines)
                     {
-                        PointD pFace1 = line.Start;
-                        PointD pFace1Next = line.End;
-                        g.DrawLine(pen,
-                                   new Point(
-                                       (int)
-                                       (pFace1.X + bmp.Width/2 +
-                                        Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1.Z) +
-                                        Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
-                                       (int)
-                                       (pFace1.Y + bmp.Height/2 -
-                                        Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1.Z) -
-                                        Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z)),
-                                   new Point(
-                                       (int)
-                                       (pFace1Next.X + bmp.Width/2 +
-                                        Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1Next.Z) +
-                                        Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
-                                       (int)
-                                       (pFace1Next.Y + bmp.Height/2 -
-                                        Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1Next.Z) -
-                                        Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z)));
+                        Point start = new Point(
+                            (int)
+                            (line.Start.X + bmp.Width/2 +
+                             Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.Start.Z) +
+                             Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
+                            (int)
+                            (line.Start.Y + bmp.Height/2 -
+                             Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.Start.Z) -
+                             Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z));
+                        Point end = new Point(
+                            (int)
+                            (line.End.X + bmp.Width/2 +
+                             Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.End.Z) +
+                             Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
+                            (int)
+                            (line.End.Y + bmp.Height/2 -
+                             Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.End.Z) -
+                             Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z));
+                        g.DrawLine(pen, start, end);
                     }
                 }
             }
