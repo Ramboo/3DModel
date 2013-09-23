@@ -377,14 +377,6 @@ namespace _3DModel
                         break;
                 }
             }
-            //faces[0].IsFrontCurrent = (faces[0].xAngleStart + faces[0].xAngleCurrent) >= -125 &&
-            //                          (faces[0].xAngleStart + faces[0].xAngleCurrent) <= 55
-            //                              ? faces[0].IsFrontStart
-            //                              : !faces[0].IsFrontStart;
-            //faces[1].IsFrontCurrent = (AngleFix(-faces[1].xAngleStart + faces[1].xAngleCurrent)) >= -125 + faces[1].xAngleStart &&
-            //                          (AngleFix(-faces[1].xAngleStart + faces[1].xAngleCurrent)) <= 55 + faces[1].xAngleStart
-            //                              ? faces[1].IsFrontStart
-            //                              : !faces[1].IsFrontStart;
             BasePoint = faces[0].Lines[0].Start;
         }
 
