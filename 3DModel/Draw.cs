@@ -29,7 +29,7 @@ namespace _3DModel
             {
                 foreach (Face face in baseObj.faces)
                 {
-                    if (!face.IsFront) continue;
+                    if (!face.IsFrontCurrent) continue;
                     foreach (Line line in face.Lines)
                     {
                         PointD pFace1 = line.Start;
