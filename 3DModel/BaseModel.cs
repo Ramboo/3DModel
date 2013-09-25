@@ -348,20 +348,20 @@ namespace _3DModel
                 {
                     line.Start =
                         new PointD(
-                            line.Start.X * _rotateArray[0][0] + line.Start.Y * _rotateArray[1][0] +
-                            line.Start.Z * _rotateArray[2][0] + _rotateArray[3][0],
-                            line.Start.X * _rotateArray[0][1] + line.Start.Y * _rotateArray[1][1] +
-                            line.Start.Z * _rotateArray[2][1] + _rotateArray[3][1],
-                            line.Start.X * _rotateArray[0][2] + line.Start.Y * _rotateArray[1][2] +
-                            line.Start.Z * _rotateArray[2][2] + _rotateArray[3][2]);
+                            line.Start.X*_rotateArray[0][0] + line.Start.Y*_rotateArray[1][0] +
+                            line.Start.Z*_rotateArray[2][0] + _rotateArray[3][0],
+                            line.Start.X*_rotateArray[0][1] + line.Start.Y*_rotateArray[1][1] +
+                            line.Start.Z*_rotateArray[2][1] + _rotateArray[3][1],
+                            line.Start.X*_rotateArray[0][2] + line.Start.Y*_rotateArray[1][2] +
+                            line.Start.Z*_rotateArray[2][2] + _rotateArray[3][2]);
                     line.End =
                         new PointD(
-                            line.End.X * _rotateArray[0][0] + line.End.Y * _rotateArray[1][0] +
-                            line.End.Z * _rotateArray[2][0] + _rotateArray[3][0],
-                            line.End.X * _rotateArray[0][1] + line.End.Y * _rotateArray[1][1] +
-                            line.End.Z * _rotateArray[2][1] + _rotateArray[3][1],
-                            line.End.X * _rotateArray[0][2] + line.End.Y * _rotateArray[1][2] +
-                            line.End.Z * _rotateArray[2][2] + _rotateArray[3][2]);
+                            line.End.X*_rotateArray[0][0] + line.End.Y*_rotateArray[1][0] +
+                            line.End.Z*_rotateArray[2][0] + _rotateArray[3][0],
+                            line.End.X*_rotateArray[0][1] + line.End.Y*_rotateArray[1][1] +
+                            line.End.Z*_rotateArray[2][1] + _rotateArray[3][1],
+                            line.End.X*_rotateArray[0][2] + line.End.Y*_rotateArray[1][2] +
+                            line.End.Z*_rotateArray[2][2] + _rotateArray[3][2]);
                 }
                 //switch (byAxis)
                 //{
@@ -400,10 +400,7 @@ namespace _3DModel
                 //        break;
                 //}
             }
-<<<<<<< HEAD
-=======
             currentAngle = new PointD(currentAngle.X + alpha, currentAngle.Y + beta, currentAngle.Z + gamma);
->>>>>>> Test
             BasePoint = faces[0].Lines[0].Start;
         }
 
