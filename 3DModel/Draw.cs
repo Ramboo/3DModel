@@ -29,30 +29,20 @@ namespace _3DModel
             {
                 foreach (Face face in baseObj.faces)
                 {
-                    if (!face.IsFrontCurrent) continue;
+                    //if (!face.IsFrontCurrent) continue;
                     foreach (Line line in face.Lines)
                     {
-                        PointD pFace1 = line.Start;
-                        PointD pFace1Next = line.End;
-                        g.DrawLine(pen,
-                                   new Point(
-                                       (int)
-                                       (pFace1.X + bmp.Width/2 +
-                                        Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1.Z) +
-                                        Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
-                                       (int)
-                                       (pFace1.Y + bmp.Height/2 -
-                                        Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1.Z) -
-                                        Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z)),
-                                   new Point(
-                                       (int)
-                                       (pFace1Next.X + bmp.Width/2 +
-                                        Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1Next.Z) +
-                                        Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
-                                       (int)
-                                       (pFace1Next.Y + bmp.Height/2 -
-                                        Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - pFace1Next.Z) -
-                                        Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z)));
+                        Point start = new Point(
+                            (int)
+                            (line.Start.X + bmp.Width/2),
+                            (int)
+                            (line.Start.Y + bmp.Height/2));
+                        Point end = new Point(
+                            (int)
+                            (line.End.X + bmp.Width/2),
+                            (int)
+                            (line.End.Y + bmp.Height/2));
+                        g.DrawLine(pen, start, end);
                     }
                 }
             }
