@@ -33,11 +33,15 @@ namespace _3DModel
                     foreach (Line line in face.Lines)
                     {
                         Point start = new Point(
-                            (int) (line.Start.X + bmp.Width/2),
-                            (int) (line.Start.Y + bmp.Height/2));
+                            (int)
+                            (line.Start.X + bmp.Width/2),
+                            (int)
+                            (line.Start.Y + bmp.Height/2));
                         Point end = new Point(
-                            (int) (line.End.X + bmp.Width/2),
-                            (int) (line.End.Y + bmp.Height/2));
+                            (int)
+                            (line.End.X + bmp.Width/2),
+                            (int)
+                            (line.End.Y + bmp.Height/2));
                         g.DrawLine(pen, start, end);
                     }
                 }

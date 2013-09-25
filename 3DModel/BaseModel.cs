@@ -18,6 +18,8 @@ namespace _3DModel
 
         public List<Face> faces = new List<Face>(); 
 
+        public PointD currentAngle = new PointD(0,0,0);
+
         public BaseModel(double x, double y, double z, double a, double b, double c, double d)
         {
             BasePoint = new PointD(x, y, z);
@@ -306,30 +308,39 @@ namespace _3DModel
 
         public void Rotate(double alpha, double beta, double gamma, PointD point)
         {
-            double alphaRad = Math.PI/180*alpha; //rad's
-            double betaRad = Math.PI/180*beta; //rad's
-            double gammaRad = Math.PI/180*gamma; //rad's
-            double[][] _rotateArrayAlpha = new[]
+            double xRad = Math.PI/180*alpha; //rad's
+            double yRad = Math.PI/180*beta; //rad's
+            double zRad = Math.PI/180*gamma; //rad's
+            double C1 = Math.Cos(xRad), C2 = Math.Cos(yRad), C3 = Math.Cos(zRad);
+            double S1 = Math.Sin(xRad), S2 = Math.Sin(yRad), S3 = Math.Sin(zRad);
+            double[][] _rotateArray = new[]
                 {
-                    new double[] {1, 0, 0, 0},
-                    new[] {0, Math.Cos(alphaRad), -Math.Sin(alphaRad), 0},
-                    new[] {0, Math.Sin(alphaRad), Math.Cos(alphaRad), 0},
-                    new double[] {0, 0, 0, 1}
+                    new[] {C2*C3, - C2*S3, S2, 0},
+                    new[] {C1*S3 + C3*S1*S2, C1*C3 - S1*S2*S3, - C2*S1, 0},
+                    new[] {S1*S3 - C1*C3*S2, C3*S1 + C1*S2*S3, C1*C2 ,0},
+                    new[] {0.0,0,0,0}
                 };
-            double[][] _rotateArrayBeta = new[]
-                {
-                    new[] {Math.Cos(betaRad), 0, -Math.Sin(betaRad), 0},
-                    new double[] {0, 1, 0, 0},
-                    new[] {Math.Sin(betaRad), 0, Math.Cos(betaRad), 0},
-                    new double[] {0, 0, 0, 1}
-                };
-            double[][] _rotateArrayGamma = new[]
-                {
-                    new[] {Math.Cos(gammaRad), -Math.Sin(gammaRad), 0, 0},
-                    new[] {Math.Sin(gammaRad), Math.Cos(gammaRad), 0, 0},
-                    new double[] {0, 0, 1, 0},
-                    new double[] {0, 0, 0, 1}
-                };
+            //double[][] _rotateArrayAlpha = new[]
+            //    {
+            //        new double[] {1, 0, 0, 0},
+            //        new[] {0, Math.Cos(xRad), -Math.Sin(xRad), 0},
+            //        new[] {0, Math.Sin(xRad), Math.Cos(xRad), 0},
+            //        new double[] {0, 0, 0, 1}
+            //    };
+            //double[][] _rotateArrayBeta = new[]
+            //    {
+            //        new[] {Math.Cos(yRad), 0, -Math.Sin(yRad), 0},
+            //        new double[] {0, 1, 0, 0},
+            //        new[] {Math.Sin(yRad), 0, Math.Cos(yRad), 0},
+            //        new double[] {0, 0, 0, 1}
+            //    };
+            //double[][] _rotateArrayGamma = new[]
+            //    {
+            //        new[] {Math.Cos(zRad), -Math.Sin(zRad), 0, 0},
+            //        new[] {Math.Sin(zRad), Math.Cos(zRad), 0, 0},
+            //        new double[] {0, 0, 1, 0},
+            //        new double[] {0, 0, 0, 1}
+            //    };
             foreach (Face face in faces)
             {
                 List<Line> lines = face.Lines;
@@ -337,52 +348,20 @@ namespace _3DModel
                 {
                     line.Start =
                         new PointD(
-                            line.Start.X * _rotateArrayAlpha[0][0] + line.Start.Y * _rotateArrayAlpha[1][0] +
-                            line.Start.Z * _rotateArrayAlpha[2][0] + _rotateArrayAlpha[3][0],
-                            line.Start.X * _rotateArrayAlpha[0][1] + line.Start.Y * _rotateArrayAlpha[1][1] +
-                            line.Start.Z * _rotateArrayAlpha[2][1] + _rotateArrayAlpha[3][1],
-                            line.Start.X * _rotateArrayAlpha[0][2] + line.Start.Y * _rotateArrayAlpha[1][2] +
-                            line.Start.Z * _rotateArrayAlpha[2][2] + _rotateArrayAlpha[3][2]);
+                            line.Start.X * _rotateArray[0][0] + line.Start.Y * _rotateArray[1][0] +
+                            line.Start.Z * _rotateArray[2][0] + _rotateArray[3][0],
+                            line.Start.X * _rotateArray[0][1] + line.Start.Y * _rotateArray[1][1] +
+                            line.Start.Z * _rotateArray[2][1] + _rotateArray[3][1],
+                            line.Start.X * _rotateArray[0][2] + line.Start.Y * _rotateArray[1][2] +
+                            line.Start.Z * _rotateArray[2][2] + _rotateArray[3][2]);
                     line.End =
                         new PointD(
-                            line.End.X * _rotateArrayAlpha[0][0] + line.End.Y * _rotateArrayAlpha[1][0] +
-                            line.End.Z * _rotateArrayAlpha[2][0] + _rotateArrayAlpha[3][0],
-                            line.End.X * _rotateArrayAlpha[0][1] + line.End.Y * _rotateArrayAlpha[1][1] +
-                            line.End.Z * _rotateArrayAlpha[2][1] + _rotateArrayAlpha[3][1],
-                            line.End.X * _rotateArrayAlpha[0][2] + line.End.Y * _rotateArrayAlpha[1][2] +
-                            line.End.Z * _rotateArrayAlpha[2][2] + _rotateArrayAlpha[3][2]);
-                    line.Start =
-                        new PointD(
-                            line.Start.X * _rotateArrayBeta[0][0] + line.Start.Y * _rotateArrayBeta[1][0] +
-                            line.Start.Z * _rotateArrayBeta[2][0] + _rotateArrayBeta[3][0],
-                            line.Start.X * _rotateArrayBeta[0][1] + line.Start.Y * _rotateArrayBeta[1][1] +
-                            line.Start.Z * _rotateArrayBeta[2][1] + _rotateArrayBeta[3][1],
-                            line.Start.X * _rotateArrayBeta[0][2] + line.Start.Y * _rotateArrayBeta[1][2] +
-                            line.Start.Z * _rotateArrayBeta[2][2] + _rotateArrayBeta[3][2]);
-                    line.End =
-                        new PointD(
-                            line.End.X * _rotateArrayBeta[0][0] + line.End.Y * _rotateArrayBeta[1][0] +
-                            line.End.Z * _rotateArrayBeta[2][0] + _rotateArrayBeta[3][0],
-                            line.End.X * _rotateArrayBeta[0][1] + line.End.Y * _rotateArrayBeta[1][1] +
-                            line.End.Z * _rotateArrayBeta[2][1] + _rotateArrayBeta[3][1],
-                            line.End.X * _rotateArrayBeta[0][2] + line.End.Y * _rotateArrayBeta[1][2] +
-                            line.End.Z * _rotateArrayBeta[2][2] + _rotateArrayBeta[3][2]);
-                    line.Start =
-                        new PointD(
-                            line.Start.X * _rotateArrayGamma[0][0] + line.Start.Y * _rotateArrayGamma[1][0] +
-                            line.Start.Z * _rotateArrayGamma[2][0] + _rotateArrayGamma[3][0],
-                            line.Start.X * _rotateArrayGamma[0][1] + line.Start.Y * _rotateArrayGamma[1][1] +
-                            line.Start.Z * _rotateArrayGamma[2][1] + _rotateArrayGamma[3][1],
-                            line.Start.X * _rotateArrayGamma[0][2] + line.Start.Y * _rotateArrayGamma[1][2] +
-                            line.Start.Z * _rotateArrayGamma[2][2] + _rotateArrayGamma[3][2]);
-                    line.End =
-                        new PointD(
-                            line.End.X * _rotateArrayGamma[0][0] + line.End.Y * _rotateArrayGamma[1][0] +
-                            line.End.Z * _rotateArrayGamma[2][0] + _rotateArrayGamma[3][0],
-                            line.End.X * _rotateArrayGamma[0][1] + line.End.Y * _rotateArrayGamma[1][1] +
-                            line.End.Z * _rotateArrayGamma[2][1] + _rotateArrayGamma[3][1],
-                            line.End.X * _rotateArrayGamma[0][2] + line.End.Y * _rotateArrayGamma[1][2] +
-                            line.End.Z * _rotateArrayGamma[2][2] + _rotateArrayGamma[3][2]);
+                            line.End.X * _rotateArray[0][0] + line.End.Y * _rotateArray[1][0] +
+                            line.End.Z * _rotateArray[2][0] + _rotateArray[3][0],
+                            line.End.X * _rotateArray[0][1] + line.End.Y * _rotateArray[1][1] +
+                            line.End.Z * _rotateArray[2][1] + _rotateArray[3][1],
+                            line.End.X * _rotateArray[0][2] + line.End.Y * _rotateArray[1][2] +
+                            line.End.Z * _rotateArray[2][2] + _rotateArray[3][2]);
                 }
                 //switch (byAxis)
                 //{
@@ -421,6 +400,7 @@ namespace _3DModel
                 //        break;
                 //}
             }
+            currentAngle = new PointD(currentAngle.X + alpha, currentAngle.Y + beta, currentAngle.Z + gamma);
             BasePoint = faces[0].Lines[0].Start;
         }
 
@@ -453,11 +433,11 @@ namespace _3DModel
                     line.Start = new PointD(
                         -(point.X - line.Start.X)*_zoomArray[0, 0] + line.Start.X,
                         -(point.Y - line.Start.Y)*_zoomArray[1, 1] + line.Start.Y,
-                        -(point.Z - line.Start.Z) * _zoomArray[2, 2] + line.Start.Z);
+                        -(point.Z - line.Start.Z)*_zoomArray[2, 2] + line.Start.Z);
                     line.End = new PointD(
-                        -(point.X - line.End.X) * _zoomArray[0, 0] + line.End.X,
-                        -(point.Y - line.End.Y) * _zoomArray[1, 1] + line.End.Y,
-                        -(point.Z - line.End.Z) * _zoomArray[2, 2] + line.End.Z);
+                        -(point.X - line.End.X)*_zoomArray[0, 0] + line.End.X,
+                        -(point.Y - line.End.Y)*_zoomArray[1, 1] + line.End.Y,
+                        -(point.Z - line.End.Z)*_zoomArray[2, 2] + line.End.Z);
                 }
             }
             BasePoint = faces[0].Lines[0].Start;
