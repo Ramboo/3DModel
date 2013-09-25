@@ -29,27 +29,15 @@ namespace _3DModel
             {
                 foreach (Face face in baseObj.faces)
                 {
-                    if (!face.IsFrontCurrent) continue;
+                    //if (!face.IsFrontCurrent) continue;
                     foreach (Line line in face.Lines)
                     {
                         Point start = new Point(
-                            (int)
-                            (line.Start.X + bmp.Width/2 +
-                             Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.Start.Z) +
-                             Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
-                            (int)
-                            (line.Start.Y + bmp.Height/2 -
-                             Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.Start.Z) -
-                             Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z));
+                            (int) (line.Start.X + bmp.Width/2),
+                            (int) (line.Start.Y + bmp.Height/2));
                         Point end = new Point(
-                            (int)
-                            (line.End.X + bmp.Width/2 +
-                             Math.Cos(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.End.Z) +
-                             Math.Cos(Form1.zAngleRad)*baseObj.BasePoint.Z),
-                            (int)
-                            (line.End.Y + bmp.Height/2 -
-                             Math.Sin(Form1.zAngleRad)*(baseObj.BasePoint.Z - line.End.Z) -
-                             Math.Sin(Form1.zAngleRad)*baseObj.BasePoint.Z));
+                            (int) (line.End.X + bmp.Width/2),
+                            (int) (line.End.Y + bmp.Height/2));
                         g.DrawLine(pen, start, end);
                     }
                 }
