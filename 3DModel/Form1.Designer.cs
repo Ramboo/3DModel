@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picFront = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numUDdangleg = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numUDdangleb = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.numUDzz = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
@@ -47,7 +51,6 @@
             this.numUDdy = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.numUDdx = new System.Windows.Forms.NumericUpDown();
-            this.btnInitModel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBoxA = new System.Windows.Forms.TextBox();
             this.txtBoxB = new System.Windows.Forms.TextBox();
@@ -56,12 +59,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtBoxD = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.numUDdangleb = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.numUDdangleg = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.scrollA = new System.Windows.Forms.HScrollBar();
+            this.scrollB = new System.Windows.Forms.HScrollBar();
+            this.scrollC = new System.Windows.Forms.HScrollBar();
+            this.scrollD = new System.Windows.Forms.HScrollBar();
+            this.picProf = new System.Windows.Forms.PictureBox();
+            this.picHoriz = new System.Windows.Forms.PictureBox();
+            this.picAkson = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picFront)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDzz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDdz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDzy)).BeginInit();
@@ -69,18 +77,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDdanglea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDdy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDdx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProf)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHoriz)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAkson)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picFront
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(600, 600);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.picFront.BackColor = System.Drawing.Color.White;
+            this.picFront.Location = new System.Drawing.Point(13, 13);
+            this.picFront.Name = "picFront";
+            this.picFront.Size = new System.Drawing.Size(300, 300);
+            this.picFront.TabIndex = 0;
+            this.picFront.TabStop = false;
             // 
             // panel1
             // 
@@ -105,15 +114,77 @@
             this.panel1.Controls.Add(this.numUDdy);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.numUDdx);
-            this.panel1.Location = new System.Drawing.Point(619, 146);
+            this.panel1.Location = new System.Drawing.Point(619, 117);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(322, 467);
+            this.panel1.Size = new System.Drawing.Size(322, 496);
             this.panel1.TabIndex = 1;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(13, 135);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 13);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "γ";
+            // 
+            // numUDdangleg
+            // 
+            this.numUDdangleg.Increment = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            this.numUDdangleg.Location = new System.Drawing.Point(42, 133);
+            this.numUDdangleg.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numUDdangleg.Name = "numUDdangleg";
+            this.numUDdangleg.Size = new System.Drawing.Size(212, 20);
+            this.numUDdangleg.TabIndex = 24;
+            this.numUDdangleg.Value = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(13, 109);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(13, 13);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "β";
+            // 
+            // numUDdangleb
+            // 
+            this.numUDdangleb.Increment = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            this.numUDdangleb.Location = new System.Drawing.Point(42, 107);
+            this.numUDdangleb.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.numUDdangleb.Name = "numUDdangleb";
+            this.numUDdangleb.Size = new System.Drawing.Size(212, 20);
+            this.numUDdangleb.TabIndex = 22;
+            this.numUDdangleb.Value = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 263);
+            this.label10.Location = new System.Drawing.Point(13, 213);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(19, 13);
             this.label10.TabIndex = 21;
@@ -127,7 +198,7 @@
             0,
             0,
             65536});
-            this.numUDzz.Location = new System.Drawing.Point(42, 261);
+            this.numUDzz.Location = new System.Drawing.Point(42, 211);
             this.numUDzz.Minimum = new decimal(new int[] {
             100,
             0,
@@ -171,7 +242,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 237);
+            this.label7.Location = new System.Drawing.Point(13, 187);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(19, 13);
             this.label7.TabIndex = 14;
@@ -185,7 +256,7 @@
             0,
             0,
             65536});
-            this.numUDzy.Location = new System.Drawing.Point(42, 235);
+            this.numUDzy.Location = new System.Drawing.Point(42, 185);
             this.numUDzy.Minimum = new decimal(new int[] {
             100,
             0,
@@ -202,7 +273,7 @@
             // 
             // btnZoom
             // 
-            this.btnZoom.Location = new System.Drawing.Point(260, 209);
+            this.btnZoom.Location = new System.Drawing.Point(260, 159);
             this.btnZoom.Name = "btnZoom";
             this.btnZoom.Size = new System.Drawing.Size(58, 72);
             this.btnZoom.TabIndex = 12;
@@ -213,7 +284,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 211);
+            this.label6.Location = new System.Drawing.Point(13, 161);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(19, 13);
             this.label6.TabIndex = 11;
@@ -227,7 +298,7 @@
             0,
             0,
             65536});
-            this.numUDzx.Location = new System.Drawing.Point(42, 209);
+            this.numUDzx.Location = new System.Drawing.Point(42, 159);
             this.numUDzx.Minimum = new decimal(new int[] {
             100,
             0,
@@ -345,16 +416,6 @@
             this.numUDdx.Size = new System.Drawing.Size(212, 20);
             this.numUDdx.TabIndex = 0;
             // 
-            // btnInitModel
-            // 
-            this.btnInitModel.Location = new System.Drawing.Point(619, 117);
-            this.btnInitModel.Name = "btnInitModel";
-            this.btnInitModel.Size = new System.Drawing.Size(322, 23);
-            this.btnInitModel.TabIndex = 2;
-            this.btnInitModel.Text = "Построить модель";
-            this.btnInitModel.UseVisualStyleBackColor = true;
-            this.btnInitModel.Click += new System.EventHandler(this.btnInitModel_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -366,19 +427,21 @@
             // 
             // txtBoxA
             // 
-            this.txtBoxA.Location = new System.Drawing.Point(636, 16);
+            this.txtBoxA.Location = new System.Drawing.Point(636, 13);
             this.txtBoxA.Name = "txtBoxA";
-            this.txtBoxA.Size = new System.Drawing.Size(305, 20);
+            this.txtBoxA.Size = new System.Drawing.Size(54, 20);
             this.txtBoxA.TabIndex = 4;
             this.txtBoxA.Text = "40";
+            this.txtBoxA.TextChanged += new System.EventHandler(this.txtBoxA_TextChanged);
             // 
             // txtBoxB
             // 
             this.txtBoxB.Location = new System.Drawing.Point(636, 39);
             this.txtBoxB.Name = "txtBoxB";
-            this.txtBoxB.Size = new System.Drawing.Size(305, 20);
+            this.txtBoxB.Size = new System.Drawing.Size(54, 20);
             this.txtBoxB.TabIndex = 6;
             this.txtBoxB.Text = "150";
+            this.txtBoxB.TextChanged += new System.EventHandler(this.txtBoxB_TextChanged);
             // 
             // label4
             // 
@@ -393,9 +456,10 @@
             // 
             this.txtBoxC.Location = new System.Drawing.Point(636, 65);
             this.txtBoxC.Name = "txtBoxC";
-            this.txtBoxC.Size = new System.Drawing.Size(305, 20);
+            this.txtBoxC.Size = new System.Drawing.Size(54, 20);
             this.txtBoxC.TabIndex = 8;
             this.txtBoxC.Text = "40";
+            this.txtBoxC.TextChanged += new System.EventHandler(this.txtBoxC_TextChanged);
             // 
             // label8
             // 
@@ -410,9 +474,10 @@
             // 
             this.txtBoxD.Location = new System.Drawing.Point(636, 91);
             this.txtBoxD.Name = "txtBoxD";
-            this.txtBoxD.Size = new System.Drawing.Size(305, 20);
+            this.txtBoxD.Size = new System.Drawing.Size(54, 20);
             this.txtBoxD.TabIndex = 10;
             this.txtBoxD.Text = "200";
+            this.txtBoxD.TextChanged += new System.EventHandler(this.txtBoxD_TextChanged);
             // 
             // label11
             // 
@@ -423,73 +488,85 @@
             this.label11.TabIndex = 9;
             this.label11.Text = "D";
             // 
-            // label12
+            // scrollA
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(13, 109);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(13, 13);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "β";
+            this.scrollA.Location = new System.Drawing.Point(693, 13);
+            this.scrollA.Maximum = 500;
+            this.scrollA.Name = "scrollA";
+            this.scrollA.Size = new System.Drawing.Size(248, 20);
+            this.scrollA.TabIndex = 11;
+            this.scrollA.Value = 40;
+            this.scrollA.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollA_Scroll);
             // 
-            // numUDdangleb
+            // scrollB
             // 
-            this.numUDdangleb.Increment = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
-            this.numUDdangleb.Location = new System.Drawing.Point(42, 107);
-            this.numUDdangleb.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.numUDdangleb.Name = "numUDdangleb";
-            this.numUDdangleb.Size = new System.Drawing.Size(212, 20);
-            this.numUDdangleb.TabIndex = 22;
-            this.numUDdangleb.Value = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
+            this.scrollB.Location = new System.Drawing.Point(693, 39);
+            this.scrollB.Maximum = 500;
+            this.scrollB.Name = "scrollB";
+            this.scrollB.Size = new System.Drawing.Size(248, 20);
+            this.scrollB.TabIndex = 12;
+            this.scrollB.Value = 150;
+            this.scrollB.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollB_Scroll);
             // 
-            // label13
+            // scrollC
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(13, 135);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(13, 13);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "γ";
+            this.scrollC.Location = new System.Drawing.Point(693, 65);
+            this.scrollC.Maximum = 500;
+            this.scrollC.Name = "scrollC";
+            this.scrollC.Size = new System.Drawing.Size(248, 20);
+            this.scrollC.TabIndex = 13;
+            this.scrollC.Value = 40;
+            this.scrollC.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollC_Scroll);
             // 
-            // numUDdangleg
+            // scrollD
             // 
-            this.numUDdangleg.Increment = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
-            this.numUDdangleg.Location = new System.Drawing.Point(42, 133);
-            this.numUDdangleg.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.numUDdangleg.Name = "numUDdangleg";
-            this.numUDdangleg.Size = new System.Drawing.Size(212, 20);
-            this.numUDdangleg.TabIndex = 24;
-            this.numUDdangleg.Value = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
+            this.scrollD.Location = new System.Drawing.Point(693, 91);
+            this.scrollD.Maximum = 500;
+            this.scrollD.Name = "scrollD";
+            this.scrollD.Size = new System.Drawing.Size(248, 20);
+            this.scrollD.TabIndex = 14;
+            this.scrollD.Value = 200;
+            this.scrollD.Scroll += new System.Windows.Forms.ScrollEventHandler(this.scrollD_Scroll);
+            // 
+            // picProf
+            // 
+            this.picProf.BackColor = System.Drawing.Color.White;
+            this.picProf.Location = new System.Drawing.Point(313, 13);
+            this.picProf.Name = "picProf";
+            this.picProf.Size = new System.Drawing.Size(300, 300);
+            this.picProf.TabIndex = 15;
+            this.picProf.TabStop = false;
+            // 
+            // picHoriz
+            // 
+            this.picHoriz.BackColor = System.Drawing.Color.White;
+            this.picHoriz.Location = new System.Drawing.Point(13, 313);
+            this.picHoriz.Name = "picHoriz";
+            this.picHoriz.Size = new System.Drawing.Size(300, 300);
+            this.picHoriz.TabIndex = 16;
+            this.picHoriz.TabStop = false;
+            // 
+            // picAkson
+            // 
+            this.picAkson.BackColor = System.Drawing.Color.White;
+            this.picAkson.Location = new System.Drawing.Point(313, 313);
+            this.picAkson.Name = "picAkson";
+            this.picAkson.Size = new System.Drawing.Size(300, 300);
+            this.picAkson.TabIndex = 17;
+            this.picAkson.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 625);
+            this.Controls.Add(this.picAkson);
+            this.Controls.Add(this.picHoriz);
+            this.Controls.Add(this.picProf);
+            this.Controls.Add(this.scrollD);
+            this.Controls.Add(this.scrollC);
+            this.Controls.Add(this.scrollB);
+            this.Controls.Add(this.scrollA);
             this.Controls.Add(this.txtBoxD);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtBoxC);
@@ -498,15 +575,16 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtBoxA);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnInitModel);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picFront);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFront)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDzz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDdz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDzy)).EndInit();
@@ -514,8 +592,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDdanglea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDdy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDdx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDdangleg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picProf)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHoriz)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAkson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,7 +602,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picFront;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numUDdy;
@@ -542,7 +621,6 @@
         private System.Windows.Forms.NumericUpDown numUDdz;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numUDzz;
-        private System.Windows.Forms.Button btnInitModel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtBoxA;
         private System.Windows.Forms.TextBox txtBoxB;
@@ -555,6 +633,13 @@
         private System.Windows.Forms.NumericUpDown numUDdangleg;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown numUDdangleb;
+        private System.Windows.Forms.HScrollBar scrollA;
+        private System.Windows.Forms.HScrollBar scrollB;
+        private System.Windows.Forms.HScrollBar scrollC;
+        private System.Windows.Forms.HScrollBar scrollD;
+        private System.Windows.Forms.PictureBox picProf;
+        private System.Windows.Forms.PictureBox picHoriz;
+        private System.Windows.Forms.PictureBox picAkson;
     }
 }
 

@@ -20,22 +20,30 @@ namespace _3DModel
 
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            bmpFront = new Bitmap(picFront.Width, picFront.Height);
+            bmpHoriz = new Bitmap(picHoriz.Width, picHoriz.Height);
+            bmpProf = new Bitmap(picProf.Width, picProf.Height);
+            bmpAkson = new Bitmap(picAkson.Width, picAkson.Height);
 
-            //Draw.DrawAxis(bmp);
-            Draw.DrawObject(bmp, model);
+            Draw.DrawObjectFront(bmpFront, model);
+            Draw.DrawObjectHoriz(bmpHoriz, model);
+            Draw.DrawObjectProf(bmpProf, model);
+            Draw.DrawObjectAkson(bmpAkson, model);
 
-            pictureBox1.Image = bmp;
+            picFront.Image = bmpFront;
+            picHoriz.Image = bmpHoriz;
+            picProf.Image = bmpProf;
+            picAkson.Image = bmpAkson;
         }
 
         private Timer timer = new Timer();
 
         private BaseModel model;
-        private Bitmap bmp;
+        private Bitmap bmpFront, bmpHoriz, bmpProf, bmpAkson;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            bmpFront = new Bitmap(picFront.Width, picFront.Height);
             InitModel(int.Parse(txtBoxA.Text), int.Parse(txtBoxB.Text), int.Parse(txtBoxC.Text), int.Parse(txtBoxD.Text));
         }
 
@@ -51,7 +59,8 @@ namespace _3DModel
 
         private void btnRotate_Click(object sender, EventArgs e)
         {
-            model.Rotate((double) numUDdanglea.Value, (double)numUDdangleb.Value, (double)numUDdangleg.Value, new PointD(bmp.Width/2, bmp.Height/2, 0));
+            model.Rotate((double) numUDdanglea.Value, (double) numUDdangleb.Value, (double) numUDdangleg.Value,
+                         new PointD(bmpFront.Width/2, bmpFront.Height/2, 0));
         }
 
         private void btnZoom_Click(object sender, EventArgs e)
@@ -59,9 +68,92 @@ namespace _3DModel
             model.Zoom((double) numUDzx.Value, (double) numUDzy.Value, (double) numUDzz.Value, new PointD(0, 0, 0));
         }
 
-        private void btnInitModel_Click(object sender, EventArgs e)
+        private void scrollA_Scroll(object sender, ScrollEventArgs e)
         {
-            InitModel(int.Parse(txtBoxA.Text), int.Parse(txtBoxB.Text), int.Parse(txtBoxC.Text), int.Parse(txtBoxD.Text));
+            txtBoxA.Text = scrollA.Value.ToString();
+        }
+
+        private void scrollB_Scroll(object sender, ScrollEventArgs e)
+        {
+            txtBoxB.Text = scrollB.Value.ToString();
+        }
+
+        private void scrollC_Scroll(object sender, ScrollEventArgs e)
+        {
+            txtBoxC.Text = scrollC.Value.ToString();
+        }
+
+        private void scrollD_Scroll(object sender, ScrollEventArgs e)
+        {
+            txtBoxD.Text = scrollD.Value.ToString();
+        }
+
+        private void txtBoxA_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxA.Text))
+            {
+                try
+                {
+                    scrollA.Value = int.Parse(txtBoxA.Text);
+                    InitModel(int.Parse(txtBoxA.Text), int.Parse(txtBoxB.Text), int.Parse(txtBoxC.Text),
+                              int.Parse(txtBoxD.Text));
+                }
+                catch
+                {
+                    MessageBox.Show("Недопустимое значение");
+                }
+            }
+        }
+
+        private void txtBoxB_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxB.Text))
+            {
+                try
+                {
+                    scrollB.Value = int.Parse(txtBoxA.Text);
+                    InitModel(int.Parse(txtBoxA.Text), int.Parse(txtBoxB.Text), int.Parse(txtBoxC.Text),
+                              int.Parse(txtBoxD.Text));
+                }
+                catch
+                {
+                    MessageBox.Show("Недопустимое значение");
+                }
+            }
+        }
+
+        private void txtBoxC_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxC.Text))
+            {
+                try
+                {
+                    scrollC.Value = int.Parse(txtBoxA.Text);
+                    InitModel(int.Parse(txtBoxA.Text), int.Parse(txtBoxB.Text), int.Parse(txtBoxC.Text),
+                              int.Parse(txtBoxD.Text));
+                }
+                catch
+                {
+                    MessageBox.Show("Недопустимое значение");
+                }
+            }
+        }
+
+        private void txtBoxD_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtBoxD.Text))
+            {
+                try
+                {
+                    scrollD.Value = int.Parse(txtBoxA.Text);
+                    InitModel(int.Parse(txtBoxA.Text), int.Parse(txtBoxB.Text), int.Parse(txtBoxC.Text),
+                              int.Parse(txtBoxD.Text));
+                }
+                catch
+                {
+                    MessageBox.Show("Недопустимое значение");
+                }
+            }
         }
     }
 }
