@@ -23,17 +23,27 @@ namespace _3DModel
             bmpFront = new Bitmap(picFront.Width, picFront.Height);
             bmpHoriz = new Bitmap(picHoriz.Width, picHoriz.Height);
             bmpProf = new Bitmap(picProf.Width, picProf.Height);
-            bmpAkson = new Bitmap(picAkson.Width, picAkson.Height);
+            bmpOther = new Bitmap(picOther.Width, picOther.Height);
 
             Draw.DrawObjectFront(bmpFront, model);
             Draw.DrawObjectHoriz(bmpHoriz, model);
             Draw.DrawObjectProf(bmpProf, model);
-            Draw.DrawObjectAkson(bmpAkson, model,45,45);
-
+            if (rBtnAkson.Checked)
+            {
+                Draw.DrawObjectAkson(bmpOther, model, (double)numUDAksondx.Value, (double)numUDAksondy.Value);
+            }
+            if (rBtnKos.Checked && numUDKosougA.Value%90 != 0 && numUDKosougA.Value != 0)
+            {
+                Draw.DrawObjectKosoug(bmpOther, model, (double) numUDKosougL.Value, (double) numUDKosougA.Value);
+            }
+            if (rBtnPerspekt.Checked)
+            {
+                Draw.DrawObjectPerspekt(bmpOther, model, (double)numUDPerspektD.Value);
+            }
             picFront.Image = bmpFront;
             picHoriz.Image = bmpHoriz;
             picProf.Image = bmpProf;
-            picAkson.Image = bmpAkson;
+            picOther.Image = bmpOther;
         }
 
         private Timer timer = new Timer();
@@ -41,7 +51,7 @@ namespace _3DModel
         private BaseModel model;
         private BaseModel startModel;
 
-        private Bitmap bmpFront, bmpHoriz, bmpProf, bmpAkson;
+        private Bitmap bmpFront, bmpHoriz, bmpProf, bmpOther;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -156,6 +166,18 @@ namespace _3DModel
                 {
                     MessageBox.Show("Недопустимое значение");
                 }
+            }
+        }
+
+        private void numUDKosougA_ValueChanged(object sender, EventArgs e)
+        {
+            if (numUDKosougA.Value >= 360)
+            {
+                numUDKosougA.Value = -359;
+            }
+            if (numUDKosougA.Value <= -360)
+            {
+                numUDKosougA.Value = 359;
             }
         }
     }

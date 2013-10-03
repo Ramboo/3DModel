@@ -463,9 +463,9 @@ namespace _3DModel
 
         public PointD(double x, double y, double z)
         {
-            X = Math.Round(x,5);
-            Y =  Math.Round(y,5);
-            Z =  Math.Round(z,5);
+            X = Math.Round(x, 5);
+            Y = Math.Round(y, 5);
+            Z = Math.Round(z, 5);
         }
     }
 

@@ -60,8 +60,8 @@ namespace _3DModel
                         new Point(10, bmp.Height - 5),
                         new Point(13, bmp.Height - 8)
                     });
-                g.DrawString("Горизонт.", new Font(FontFamily.Families[18], 10, FontStyle.Regular), Brushes.Black,
-                             new PointF(15, bmp.Height - 15));
+                g.DrawString("Гориз.", new Font(FontFamily.Families[35], 12, FontStyle.Regular), Brushes.Black,
+                             new PointF(15, bmp.Height - 25));
                 foreach (Face face in model.faces)
                 {
                     //if (!face.IsFrontCurrent) continue;
@@ -95,7 +95,7 @@ namespace _3DModel
                         new Point(bmp.Width - 5, 5),
                         new Point(bmp.Width - 9, 8)
                     });
-                g.DrawString("Профил.", new Font(FontFamily.Families[18], 10, FontStyle.Regular), Brushes.Black,
+                g.DrawString("Профил.", new Font(FontFamily.Families[35], 12, FontStyle.Regular), Brushes.Black,
                              new PointF(bmp.Width - 70, 10));
                 foreach (Face face in model.faces)
                 {
@@ -131,6 +131,8 @@ namespace _3DModel
                 };
             using (Graphics g = Graphics.FromImage(bmp))
             {
+                g.DrawString("Аксоном.", new Font(FontFamily.Families[35], 12, FontStyle.Regular), Brushes.Black,
+                             new PointF(bmp.Width - 80, 10));
                 foreach (Face face in model.faces)
                 {
                     //if (!face.IsFrontCurrent) continue;
@@ -150,6 +152,82 @@ namespace _3DModel
                             (int)
                             (line.End.X * _rotateArray[0][1] + line.End.Y * _rotateArray[1][1] +
                                 line.End.Z * _rotateArray[2][1] + _rotateArray[3][1] + bmp.Height / 2));
+                        g.DrawLine(pen, start, end);
+                    }
+                }
+            }
+        }
+        public static void DrawObjectKosoug(Bitmap bmp, BaseModel model, double l, double alpha)
+        {
+            alpha = (Math.PI / 180) * alpha; //rad's
+            double[][] _rotateArray = new[]
+                {
+                    new[] {1, 0, 0, 0.0},
+                    new[] {0, 1, 0, 0.0},
+                    new[] {l*Math.Cos(alpha), l*Math.Sin(alpha), 0, 0},
+                    new[] {0, 0, 0, 1.0}
+                };
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.DrawString("Косоуг.", new Font(FontFamily.Families[35], 12, FontStyle.Regular), Brushes.Black,
+                             new PointF(bmp.Width - 80, 10));
+                foreach (Face face in model.faces)
+                {
+                    //if (!face.IsFrontCurrent) continue;
+                    foreach (Line line in face.Lines)
+                    {
+                        Point start = new Point(
+                            (int)
+                            (line.Start.X * _rotateArray[0][0] + line.Start.Y * _rotateArray[1][0] +
+                             line.Start.Z * _rotateArray[2][0] + _rotateArray[3][0] + bmp.Width / 2),
+                            (int)
+                            (line.Start.X * _rotateArray[0][1] + line.Start.Y * _rotateArray[1][1] +
+                             line.Start.Z * _rotateArray[2][1] + _rotateArray[3][1] + bmp.Height / 2));
+                        Point end = new Point(
+                            (int)
+                            (line.End.X * _rotateArray[0][0] + line.End.Y * _rotateArray[1][0] +
+                                line.End.Z * _rotateArray[2][0] + _rotateArray[3][0] + bmp.Width / 2),
+                            (int)
+                            (line.End.X * _rotateArray[0][1] + line.End.Y * _rotateArray[1][1] +
+                                line.End.Z * _rotateArray[2][1] + _rotateArray[3][1] + bmp.Height / 2));
+                        g.DrawLine(pen, start, end);
+                    }
+                }
+            }
+        }
+        public static void DrawObjectPerspekt(Bitmap bmp, BaseModel model, double d)
+        {
+            if (d.Equals(0))
+            {
+                d = 0.0001;
+            }
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.DrawString("Перспект.", new Font(FontFamily.Families[35], 12, FontStyle.Regular), Brushes.Black,
+                             new PointF(bmp.Width - 80, 10));
+                foreach (Face face in model.faces)
+                {
+                    //if (!face.IsFrontCurrent) continue;
+                    foreach (Line line in face.Lines)
+                    {
+                        double xS = line.Start.X, yS = line.Start.Y, zS = line.Start.Z/d;
+                        if (zS != 1)
+                        {
+                            xS = xS / zS;
+                            yS = yS / zS;
+                        }
+                        Point start = new Point(
+                            (int) (xS + bmp.Width/2),
+                            (int) (yS + bmp.Height/2));
+                        double xE = line.End.X, yE = line.End.Y, zE = line.End.Z/d;
+                        if (zE != 1)
+                        {
+                            xE = xE / zE;
+                            yE = yE / zE;
+                        }
+                        Point end = new Point(
+                            (int) (xE + bmp.Width/2),
+                            (int) (yE + bmp.Height/2));
                         g.DrawLine(pen, start, end);
                     }
                 }
