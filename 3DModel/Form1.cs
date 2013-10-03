@@ -28,7 +28,7 @@ namespace _3DModel
             Draw.DrawObjectFront(bmpFront, model);
             Draw.DrawObjectHoriz(bmpHoriz, model);
             Draw.DrawObjectProf(bmpProf, model);
-            Draw.DrawObjectAkson(bmpAkson, model);
+            Draw.DrawObjectAkson(bmpAkson, model,45,45);
 
             picFront.Image = bmpFront;
             picHoriz.Image = bmpHoriz;
@@ -39,6 +39,8 @@ namespace _3DModel
         private Timer timer = new Timer();
 
         private BaseModel model;
+        private BaseModel startModel;
+
         private Bitmap bmpFront, bmpHoriz, bmpProf, bmpAkson;
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,6 +51,7 @@ namespace _3DModel
 
         private void InitModel(int a, int b, int c, int d)
         {
+            startModel = new BaseModel(0 - b/2, 0 - d/2, 0 + c/2, a, b, c, d);
             model = new BaseModel(0 - b/2, 0 - d/2, 0 + c/2, a, b, c, d);
         }
 

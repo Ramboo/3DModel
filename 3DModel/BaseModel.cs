@@ -415,19 +415,19 @@ namespace _3DModel
                     line.End.Z*_rotateArray[2][2] + _rotateArray[3][2]);
         }
 
-        private double AngleFix(double angle)
-        {
-            if (angle != 0 && angle%360 == 0) angle = 0;
-            while (angle > 180)
-            {
-                angle -= 360;
-            }
-            while (angle < -180)
-            {
-                angle += 360;
-            }
-            return angle;
-        }
+        //private double AngleFix(double angle)
+        //{
+        //    if (angle != 0 && angle%360 == 0) angle = 0;
+        //    while (angle > 180)
+        //    {
+        //        angle -= 360;
+        //    }
+        //    while (angle < -180)
+        //    {
+        //        angle += 360;
+        //    }
+        //    return angle;
+        //}
 
         public void Zoom(double dx, double dy, double dz, PointD point)
         {
@@ -463,9 +463,9 @@ namespace _3DModel
 
         public PointD(double x, double y, double z)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            X = Math.Round(x,5);
+            Y =  Math.Round(y,5);
+            Z =  Math.Round(z,5);
         }
     }
 

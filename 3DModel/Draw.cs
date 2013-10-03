@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace _3DModel
 {
@@ -121,8 +118,17 @@ namespace _3DModel
             }
         }
 
-        public static void DrawObjectAkson(Bitmap bmp, BaseModel model)
+        public static void DrawObjectAkson(Bitmap bmp, BaseModel model, double ax, double ay)
         {
+            ax = (Math.PI / 180) * ax; //rad's
+            ay = (Math.PI / 180) * ay; //rad's
+            double[][] _rotateArray = new[]
+                {
+                    new[] {Math.Cos(ay), Math.Sin(ax)*Math.Sin(ay), 0, 0},
+                    new[] {0, Math.Cos(ax), 0, 0},
+                    new[] {Math.Sin(ay), -Math.Sin(ax)*Math.Cos(ax), 0, 0},
+                    new[] {0, 0, 0, 1.0}
+                };
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 foreach (Face face in model.faces)
@@ -132,14 +138,18 @@ namespace _3DModel
                     {
                         Point start = new Point(
                             (int)
-                            (line.Start.X + bmp.Width/2),
+                            (line.Start.X*_rotateArray[0][0] + line.Start.Y*_rotateArray[1][0] +
+                             line.Start.Z*_rotateArray[2][0] + _rotateArray[3][0] + bmp.Width/2),
                             (int)
-                            (line.Start.Y + bmp.Height/2));
+                            (line.Start.X*_rotateArray[0][1] + line.Start.Y*_rotateArray[1][1] +
+                             line.Start.Z*_rotateArray[2][1] + _rotateArray[3][1] + bmp.Height/2));
                         Point end = new Point(
                             (int)
-                            (line.End.X + bmp.Width/2),
+                            (line.End.X * _rotateArray[0][0] + line.End.Y * _rotateArray[1][0] +
+                                line.End.Z * _rotateArray[2][0] + _rotateArray[3][0] + bmp.Width / 2),
                             (int)
-                            (line.End.Y + bmp.Height/2));
+                            (line.End.X * _rotateArray[0][1] + line.End.Y * _rotateArray[1][1] +
+                                line.End.Z * _rotateArray[2][1] + _rotateArray[3][1] + bmp.Height / 2));
                         g.DrawLine(pen, start, end);
                     }
                 }
