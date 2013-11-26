@@ -66,6 +66,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.numUDPerspektD = new System.Windows.Forms.NumericUpDown();
+            this.rBtnPerspekt = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.numUDKosougA = new System.Windows.Forms.NumericUpDown();
@@ -82,9 +85,10 @@
             this.picProf = new System.Windows.Forms.PictureBox();
             this.picHoriz = new System.Windows.Forms.PictureBox();
             this.picOther = new System.Windows.Forms.PictureBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.numUDPerspektD = new System.Windows.Forms.NumericUpDown();
-            this.rBtnPerspekt = new System.Windows.Forms.RadioButton();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.numUDPerspSigma = new System.Windows.Forms.NumericUpDown();
+            this.numUDPerspFi = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.picFront)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -99,6 +103,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDzx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDzy)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspektD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDKosougA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDKosougL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDAksondy)).BeginInit();
@@ -107,7 +112,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picProf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHoriz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOther)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspektD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspSigma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspFi)).BeginInit();
             this.SuspendLayout();
             // 
             // picFront
@@ -594,6 +600,10 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.label22);
+            this.tabPage4.Controls.Add(this.numUDPerspSigma);
+            this.tabPage4.Controls.Add(this.numUDPerspFi);
             this.tabPage4.Controls.Add(this.label18);
             this.tabPage4.Controls.Add(this.numUDPerspektD);
             this.tabPage4.Controls.Add(this.rBtnPerspekt);
@@ -614,6 +624,42 @@
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Проекции";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(238, 113);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(63, 13);
+            this.label18.TabIndex = 12;
+            this.label18.Text = "значение d";
+            // 
+            // numUDPerspektD
+            // 
+            this.numUDPerspektD.Location = new System.Drawing.Point(140, 110);
+            this.numUDPerspektD.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numUDPerspektD.Name = "numUDPerspektD";
+            this.numUDPerspektD.Size = new System.Drawing.Size(92, 20);
+            this.numUDPerspektD.TabIndex = 11;
+            this.numUDPerspektD.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // rBtnPerspekt
+            // 
+            this.rBtnPerspekt.AutoSize = true;
+            this.rBtnPerspekt.Location = new System.Drawing.Point(6, 110);
+            this.rBtnPerspekt.Name = "rBtnPerspekt";
+            this.rBtnPerspekt.Size = new System.Drawing.Size(104, 17);
+            this.rBtnPerspekt.TabIndex = 10;
+            this.rBtnPerspekt.Text = "Перспективная";
+            this.rBtnPerspekt.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -813,41 +859,61 @@
             this.picOther.TabIndex = 17;
             this.picOther.TabStop = false;
             // 
-            // label18
+            // label20
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(238, 113);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(63, 13);
-            this.label18.TabIndex = 12;
-            this.label18.Text = "значение d";
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(238, 164);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(63, 13);
+            this.label20.TabIndex = 33;
+            this.label20.Text = "значение β";
+            this.label20.Visible = false;
             // 
-            // numUDPerspektD
+            // label22
             // 
-            this.numUDPerspektD.Location = new System.Drawing.Point(140, 110);
-            this.numUDPerspektD.Maximum = new decimal(new int[] {
-            10000,
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(238, 138);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(64, 13);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "значение α";
+            this.label22.Visible = false;
+            // 
+            // numUDPerspSigma
+            // 
+            this.numUDPerspSigma.Location = new System.Drawing.Point(140, 136);
+            this.numUDPerspSigma.Maximum = new decimal(new int[] {
+            360,
             0,
             0,
             0});
-            this.numUDPerspektD.Name = "numUDPerspektD";
-            this.numUDPerspektD.Size = new System.Drawing.Size(92, 20);
-            this.numUDPerspektD.TabIndex = 11;
-            this.numUDPerspektD.Value = new decimal(new int[] {
-            15,
+            this.numUDPerspSigma.Minimum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            -2147483648});
+            this.numUDPerspSigma.Name = "numUDPerspSigma";
+            this.numUDPerspSigma.Size = new System.Drawing.Size(92, 20);
+            this.numUDPerspSigma.TabIndex = 31;
+            this.numUDPerspSigma.Visible = false;
+            // 
+            // numUDPerspFi
+            // 
+            this.numUDPerspFi.Location = new System.Drawing.Point(140, 162);
+            this.numUDPerspFi.Maximum = new decimal(new int[] {
+            360,
             0,
             0,
             0});
-            // 
-            // rBtnPerspekt
-            // 
-            this.rBtnPerspekt.AutoSize = true;
-            this.rBtnPerspekt.Location = new System.Drawing.Point(6, 110);
-            this.rBtnPerspekt.Name = "rBtnPerspekt";
-            this.rBtnPerspekt.Size = new System.Drawing.Size(104, 17);
-            this.rBtnPerspekt.TabIndex = 10;
-            this.rBtnPerspekt.Text = "Перспективная";
-            this.rBtnPerspekt.UseVisualStyleBackColor = true;
+            this.numUDPerspFi.Minimum = new decimal(new int[] {
+            360,
+            0,
+            0,
+            -2147483648});
+            this.numUDPerspFi.Name = "numUDPerspFi";
+            this.numUDPerspFi.Size = new System.Drawing.Size(92, 20);
+            this.numUDPerspFi.TabIndex = 30;
+            this.numUDPerspFi.Visible = false;
             // 
             // Form1
             // 
@@ -878,6 +944,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUDzy)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspektD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDKosougA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDKosougL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDAksondy)).EndInit();
@@ -886,7 +953,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picProf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHoriz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOther)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspektD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspSigma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDPerspFi)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -950,6 +1018,10 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.NumericUpDown numUDPerspektD;
         private System.Windows.Forms.RadioButton rBtnPerspekt;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown numUDPerspSigma;
+        private System.Windows.Forms.NumericUpDown numUDPerspFi;
     }
 }
 

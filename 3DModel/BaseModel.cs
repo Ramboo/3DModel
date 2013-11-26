@@ -495,5 +495,57 @@ namespace _3DModel
         public double xAngleStart { get; set; }
         public double yAngleStart { get; set; }
         public double zAngleStart { get; set; }
+
+        public static List<PointD>[] GetFacePoints(Face face)
+        {
+            List<PointD> pointList = new List<PointD>();
+            //Каркас
+            foreach (Line line in face.Lines)
+            {
+                if (line.Start.X == line.End.X && line.Start.Y != line.End.Y)
+                {
+                    double yS = line.Start.Y < line.End.Y ? line.Start.Y : line.End.Y,
+                           yE = line.Start.Y < line.End.Y ? line.End.Y : line.Start.Y;
+                    for (double j = yS; j <= yE; j++) pointList.Add(new PointD(line.Start.X, j, 0));
+                }
+                else if (line.Start.Y == line.End.Y && line.Start.X != line.End.X)
+                {
+                    double xS = line.Start.X < line.End.X ? line.Start.X : line.End.X,
+                           xE = line.Start.X < line.End.X ? line.End.X : line.Start.X;
+                    for (double j = xS; j <= xE; j++) pointList.Add(new PointD(j, line.Start.Y, 0));
+                }
+                else if (line.Start.X == line.End.X && line.Start.Y == line.End.Y)
+                    pointList.Add(new PointD(line.Start.X, line.Start.Y, 0));
+                else if (line.Start.X <= line.End.X)
+                {
+                    for (double i = line.Start.X; i <= line.End.X; i++)
+                        pointList.Add(new PointD(i,
+                                                 Math.Round((i - line.Start.X)*
+                                                            (line.End.Y - line.Start.Y)/
+                                                            (line.End.X - line.Start.X) + line.Start.Y),
+                                                 0));
+                }
+                else
+                {
+                    for (double i = line.Start.X; i >= line.End.X; i--)
+                        pointList.Add(new PointD(i,
+                                                 Math.Round((i - line.Start.X)*
+                                                            (line.End.Y - line.Start.Y)/
+                                                            (line.End.X - line.Start.X) + line.Start.Y),
+                                                 0));
+                }
+            }
+            List<PointD> insideList = new List<PointD>();
+            for (double i = pointList.Min(x => x.X); i <= pointList.Max(x => x.X); i++)
+            {
+                double yMin = pointList.Where(x => x.X.Equals(i)).Min(y => y.Y),
+                       yMax = pointList.Where(x => x.X.Equals(i)).Max(y => y.Y);
+                if (yMax - yMin > 0)
+                    for (double j = yMin; j <= yMax; j++)
+                        insideList.Add(new PointD(i, j, 0));
+            }
+
+            return new[] {pointList, insideList};
+        }
     }
 }

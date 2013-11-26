@@ -30,7 +30,7 @@ namespace _3DModel
             Draw.DrawObjectProf(bmpProf, model);
             if (rBtnAkson.Checked)
             {
-                Draw.DrawObjectAkson(bmpOther, model, (double)numUDAksondx.Value, (double)numUDAksondy.Value);
+                Draw.DrawObjectAkson(bmpOther, model, (double) numUDAksondx.Value, (double) numUDAksondy.Value);
             }
             if (rBtnKos.Checked && numUDKosougA.Value%90 != 0 && numUDKosougA.Value != 0)
             {
@@ -38,7 +38,10 @@ namespace _3DModel
             }
             if (rBtnPerspekt.Checked)
             {
-                Draw.DrawObjectPerspekt(bmpOther, model, (double)numUDPerspektD.Value);
+                Draw.DrawObjectPerspekt(bmpOther, model,
+                                        (double) numUDPerspektD.Value,
+                                        (double) numUDPerspSigma.Value,
+                                        (double) numUDPerspFi.Value);
             }
             picFront.Image = bmpFront;
             picHoriz.Image = bmpHoriz;
